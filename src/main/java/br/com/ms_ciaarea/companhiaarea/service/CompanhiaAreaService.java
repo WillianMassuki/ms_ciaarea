@@ -3,25 +3,18 @@ package br.com.ms_ciaarea.companhiaarea.service;
 import br.com.ms_ciaarea.companhiaarea.dto.CompanhiaAereaDTO;
 import br.com.ms_ciaarea.companhiaarea.exception.ResourceNotFoundException;
 import br.com.ms_ciaarea.companhiaarea.model.CompanhiaAerea;
-import br.com.ms_ciaarea.companhiaarea.model.Voo;
 import br.com.ms_ciaarea.companhiaarea.repository.CompanhiaAereaRepository;
-import br.com.ms_ciaarea.companhiaarea.repository.VooRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class CompanhiaAreaService {
 
     private final CompanhiaAereaRepository repository;
 
-    private final VooRepository vooRepository;
 
-    public CompanhiaAreaService(CompanhiaAereaRepository repository, VooRepository vooRepository) {
+    public CompanhiaAreaService(CompanhiaAereaRepository repository) {
         this.repository = repository;
-        this.vooRepository = vooRepository;
     }
-
 
     // RF07 - Cadastrar
     public CompanhiaAerea cadastrar(CompanhiaAereaDTO dto) {
@@ -49,6 +42,7 @@ public class CompanhiaAreaService {
                 .orElseThrow(() -> new ResourceNotFoundException("Companhia não encontrada"));
     }
 
+    /*
     // RF10 - Listar voos da companhia
     public List<Voo> listarVoos(Long companhiaId) {
         buscarPorId(companhiaId); // valida existência
@@ -60,6 +54,8 @@ public class CompanhiaAreaService {
     public Voo associarVoo(Long companhiaId, Long vooId) {
         CompanhiaAerea companhia = buscarPorId(companhiaId);
 
+     */
+
        /*
     Voo voo = vooRepository.findById(vooId)
                 .orElseThrow(() -> new ResourceNotFoundException("Voo não encontrado"));
@@ -69,7 +65,7 @@ public class CompanhiaAreaService {
         //   voo.setCompanhiaAerea(companhia);
 
         ///    return vooRepository.save(voo);
-        return null;
-    }
+      //  return null;
+    //}
 
 }

@@ -1,10 +1,12 @@
 package br.com.ms_ciaarea.companhiaarea.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.UUID;
 
 @Entity
 public class CompanhiaAerea {
@@ -21,18 +23,10 @@ public class CompanhiaAerea {
 
     private String pais;
 
-    @OneToMany(mappedBy = "companhiaAerea")
-    private List<Voo> voos = new ArrayList<>();
+    private UUID voos;
+
 
     public CompanhiaAerea() {
-    }
-
-    public CompanhiaAerea(Long id, String nome, String codigoIata, String pais, List<Voo> voos) {
-        this.id = id;
-        this.nome = nome;
-        this.codigoIata = codigoIata;
-        this.pais = pais;
-        this.voos = voos;
     }
 
     public Long getId() {
@@ -67,11 +61,11 @@ public class CompanhiaAerea {
         this.pais = pais;
     }
 
-    public List<Voo> getVoos() {
+    public UUID getVoos() {
         return voos;
     }
 
-    public void setVoos(List<Voo> voos) {
+    public void setVoos(UUID voos) {
         this.voos = voos;
     }
 }

@@ -2,13 +2,10 @@ package br.com.ms_ciaarea.companhiaarea.controller;
 
 import br.com.ms_ciaarea.companhiaarea.dto.CompanhiaAereaDTO;
 import br.com.ms_ciaarea.companhiaarea.model.CompanhiaAerea;
-import br.com.ms_ciaarea.companhiaarea.model.Voo;
 import br.com.ms_ciaarea.companhiaarea.service.CompanhiaAreaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/companhias")
@@ -30,6 +27,7 @@ public class CompanhiaAereaController {
         return service.atualizar(id, dto);
     }
 
+    /*
     // RF09
     @PutMapping("/{companhiaId}/voos/{vooId}")
     public Voo associarVoo(@PathVariable Long companhiaId,
@@ -42,4 +40,6 @@ public class CompanhiaAereaController {
     public List<Voo> listarVoos(@PathVariable Long companhiaId) {
         return service.listarVoos(companhiaId);
     }
+
+     */
 }
