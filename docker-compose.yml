@@ -1,0 +1,49 @@
+version: "3.9"
+
+services:
+
+  postgres:
+    image: postgres:17
+    container_name: postgres_ciaarea
+    restart: always
+
+    environment:
+      POSTGRES_DB: ciaarea
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d ciaarea"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  ms_ciaarea:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: ms_ciaarea
+
+    restart: always
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+    ports:
+      - "8080:8080"
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/ciaarea
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: root
+
+volumes:
+  postgres_data:
